@@ -18,7 +18,48 @@ go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
 To get started with this template, clone the repository and install the necessary dependencies. Then, you can begin developing your multiplayer game. Happy coding!
 
 ### Create a new packet
-TBD..
+
+1. Define packet
+```proto
+message Test {
+    string name = 1;
+    int32 age = 2;
+    repeated string nicknames = 3;
+}
+```
+
+2. Generate them for both, server and client (see below)
+3. Use the packet
+   
+`client`
+```gdscript
+var TestPacket = preload("res://net/packets/test.gd")
+var a = TestPacket.Test.new()
+	a.set_name("ignoxx")
+	a.set_age(42)
+	a.add_nicknames("moonsteroid")
+	a.add_nicknames("TopG")
+	a.add_nicknames("deez")
+	var packed_bytes = a.to_bytes()
+
+# send the packet
+ws.get_peer(1).put_packet(packet)
+```
+
+`server`
+```go
+_, msg, err := conn.ReadMessage()
+// ...
+packet := packets.Test{}
+if err = proto.Unmarshal(msg, &packet); err != nil {
+  return err
+}
+
+fmt.Println("Received test packet:")
+fmt.Println(packet.Name)
+fmt.Println(packet.Age)
+fmt.Println(packet.Nicknames)
+```
 
 ### (Re)Generate protobuf files for client and server
 If you updated your packets or created new ones, you will need to generate the packets for the server and client using:
