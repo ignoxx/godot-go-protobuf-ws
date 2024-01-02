@@ -1,4 +1,4 @@
-# Godot-Go Multiplayer Project Starter Kit
+# Godot-Go Multiplayer Project Template
 
 Jumpstart your multiplayer project with our Godot-Go Protobuf-Websocket template. This template is designed to provide a solid foundation for your multiplayer game development, leveraging the power of Godot, Go, Protobuf, and Websockets.
 
@@ -13,19 +13,33 @@ go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
 ```
 - Make: This is usually pre-installed on Linux/Mac systems. If not, refer to your system's package manager to install it.
 
-## Why Protobuf?
+## Getting Started
 
-Protobuf, or Protocol Buffers, is a method of serializing structured data. It's a flexible, efficient, and automated mechanism for serializing structured data – think XML, but smaller, faster, and simpler. 
+To get started with this template, clone the repository and install the necessary dependencies. Then, you can begin developing your multiplayer game. Happy coding!
 
-By using Protobuf, we can define our packets once and reuse them in our server and client in a type-safe way. This not only reduces the likelihood of errors but also makes the process more efficient. Protobuf is a superior choice over JSON for this purpose, as it eliminates the need to manually write your bytes in order and prevents human errors.
+### (Re)Generate protobuf files for client and server
+```sh
+make generate # to generate both
+
+##
+
+make generate-client
+
+##
+
+make generate-server
+
+```
 
 ## Tech Choices
 
 We have chosen Godot, Go, Protobuf, and Websockets for this template due to their efficiency, flexibility, and compatibility with web exports. These technologies provide a robust foundation for developing multiplayer games.
 
-## Getting Started
+## Why Protobuf?
 
-To get started with this template, clone the repository and install the necessary dependencies. Then, you can begin developing your multiplayer game. Happy coding!
+Protobuf, or Protocol Buffers, is a method of serializing structured data. It's a flexible, efficient, and automated mechanism for serializing structured data – think XML, but smaller, faster, and simpler. 
+
+By using Protobuf, we can define our packets once and reuse them in our server and client in a type-safe way. This not only reduces the likelihood of errors but also makes the process more efficient. Protobuf is a superior choice over JSON for this purpose, as it eliminates the need to manually write your bytes in order and prevents human errors.
 
 ## Contributing
 
