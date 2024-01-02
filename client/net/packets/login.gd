@@ -663,24 +663,24 @@ class PBPacker:
 class LoginRequest:
 	func _init():
 		var service
-		
+
 		_username = PBField.new("username", PB_DATA_TYPE.STRING, PB_RULE.OPTIONAL, 1, true, DEFAULT_VALUES_3[PB_DATA_TYPE.STRING])
 		service = PBServiceField.new()
 		service.field = _username
 		data[_username.tag] = service
-		
+
 		_password = PBField.new("password", PB_DATA_TYPE.STRING, PB_RULE.OPTIONAL, 2, true, DEFAULT_VALUES_3[PB_DATA_TYPE.STRING])
 		service = PBServiceField.new()
 		service.field = _password
 		data[_password.tag] = service
-		
+
 		_email = PBField.new("email", PB_DATA_TYPE.STRING, PB_RULE.OPTIONAL, 3, true, DEFAULT_VALUES_3[PB_DATA_TYPE.STRING])
 		service = PBServiceField.new()
 		service.field = _email
 		data[_email.tag] = service
-		
+
 	var data = {}
-	
+
 	var _username: PBField
 	func get_username() -> String:
 		return _username.value
@@ -689,7 +689,7 @@ class LoginRequest:
 		_username.value = DEFAULT_VALUES_3[PB_DATA_TYPE.STRING]
 	func set_username(value : String) -> void:
 		_username.value = value
-	
+
 	var _password: PBField
 	func get_password() -> String:
 		return _password.value
@@ -698,7 +698,7 @@ class LoginRequest:
 		_password.value = DEFAULT_VALUES_3[PB_DATA_TYPE.STRING]
 	func set_password(value : String) -> void:
 		_password.value = value
-	
+
 	var _email: PBField
 	func get_email() -> String:
 		return _email.value
@@ -707,13 +707,13 @@ class LoginRequest:
 		_email.value = DEFAULT_VALUES_3[PB_DATA_TYPE.STRING]
 	func set_email(value : String) -> void:
 		_email.value = value
-	
+
 	func to_string() -> String:
 		return PBPacker.message_to_string(data)
-		
+
 	func to_bytes() -> PoolByteArray:
 		return PBPacker.pack_message(data)
-		
+
 	func from_bytes(bytes : PoolByteArray, offset : int = 0, limit : int = -1) -> int:
 		var cur_limit = bytes.size()
 		if limit != -1:
@@ -728,5 +728,46 @@ class LoginRequest:
 		elif limit == -1 && result > 0:
 			return PB_ERR.PARSE_INCOMPLETE
 		return result
-	
+
+class LoginResponse:
+	func _init():
+		var service
+
+		_token = PBField.new("token", PB_DATA_TYPE.STRING, PB_RULE.OPTIONAL, 1, true, DEFAULT_VALUES_3[PB_DATA_TYPE.STRING])
+		service = PBServiceField.new()
+		service.field = _token
+		data[_token.tag] = service
+
+	var data = {}
+
+	var _token: PBField
+	func get_token() -> String:
+		return _token.value
+	func clear_token() -> void:
+		data[1].state = PB_SERVICE_STATE.UNFILLED
+		_token.value = DEFAULT_VALUES_3[PB_DATA_TYPE.STRING]
+	func set_token(value : String) -> void:
+		_token.value = value
+
+	func to_string() -> String:
+		return PBPacker.message_to_string(data)
+
+	func to_bytes() -> PoolByteArray:
+		return PBPacker.pack_message(data)
+
+	func from_bytes(bytes : PoolByteArray, offset : int = 0, limit : int = -1) -> int:
+		var cur_limit = bytes.size()
+		if limit != -1:
+			cur_limit = limit
+		var result = PBPacker.unpack_message(data, bytes, offset, cur_limit)
+		if result == cur_limit:
+			if PBPacker.check_required(data):
+				if limit == -1:
+					return PB_ERR.NO_ERRORS
+			else:
+				return PB_ERR.REQUIRED_FIELDS
+		elif limit == -1 && result > 0:
+			return PB_ERR.PARSE_INCOMPLETE
+		return result
+
 ################ USER DATA END #################

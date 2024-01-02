@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://main.gd" type="Script" id=1]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="TestBtn" type="Button" parent="."]
+margin_right = 134.0
+margin_bottom = 44.0
+text = "Send Test Packet"
+
+[node name="LoginRequestBtn" type="Button" parent="."]
+margin_top = 58.0
+margin_right = 134.0
+margin_bottom = 102.0
+text = "Login Request"
+
+[node name="Label" type="Label" parent="."]
+margin_left = 145.0
+margin_top = 59.0
+margin_right = 189.0
+margin_bottom = 99.0
+text = "Token:"
+valign = 1
+
+[node name="Value" type="Label" parent="Label"]
+margin_left = 47.0
+margin_right = 91.0
+margin_bottom = 40.0
+text = "none"
+valign = 1
+
+[connection signal="pressed" from="TestBtn" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="LoginRequestBtn" to="." method="_on_LoginRequestBtn_pressed"]
