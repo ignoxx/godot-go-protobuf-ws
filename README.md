@@ -1,12 +1,12 @@
 # Godot-Go Multiplayer Project Template
 
-Jumpstart your multiplayer project with our Godot-Go Protobuf-Websocket template. This template is designed to provide a solid foundation for your multiplayer game development, leveraging the power of Godot, Go, Protobuf, and Websockets.
+Jumpstart your multiplayer project with this Godot-Go Protobuf-Websocket template. This template is designed to provide a solid foundation for your multiplayer game development, leveraging the power of Godot, Go, Protobuf, and Websockets.
 
 ## Prerequisites
 
 To get started with this template, you will need the following installed on your system:
 
-- [Godot v3.5](https://godotengine.org/download) (We are currently using v3.5 as the web export feature in v4 is not yet on par with v3.5)
+- [Godot v3.5](https://godotengine.org/download) (I'm currently using v3.5 as the web export feature in v4 is not yet on par with v3.5)
 - Protoc: Install it using the following command:
 ```bash
 go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
@@ -17,23 +17,20 @@ go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
 
 To get started with this template, clone the repository and install the necessary dependencies. Then, you can begin developing your multiplayer game. Happy coding!
 
+### Create a new packet
+TBD..
+
 ### (Re)Generate protobuf files for client and server
+If you updated your packets or created new ones, you will need to generate the packets for the server and client using:
+
 ```sh
-make generate # to generate both
-
-##
-
-make generate-client
-
-##
-
-make generate-server
-
+make generate
 ```
 
 ## Tech Choices
 
-We have chosen Godot, Go, Protobuf, and Websockets for this template due to their efficiency, flexibility, and compatibility with web exports. These technologies provide a robust foundation for developing multiplayer games.
+I've chosen Godot, Go, Protobuf, and Websockets for this template due to their efficiency, flexibility, and compatibility with web exports. These technologies provide a robust foundation for developing multiplayer games which works for all exports
+(tested only desktop and web)
 
 ## Why Protobuf?
 
