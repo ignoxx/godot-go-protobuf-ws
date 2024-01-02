@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option go_package = "github.com/ignoxx/godot-go-protobuf-ws/server/packets";
+
+message LoginRequest {
+    string username = 1;
+    string password = 2;
+    string email = 3;
+}
